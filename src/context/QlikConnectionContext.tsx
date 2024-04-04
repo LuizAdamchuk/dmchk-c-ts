@@ -31,7 +31,7 @@ type QlikConnectionProviderProps = {
 };
 
 type useQlikConnection = {
-  qlikModule: QlikModule;
+  qlikModule: QlikModule | null;
   config: SaasConfig;
   appIds: AppIds;
 };
@@ -56,7 +56,7 @@ function QlikConnectionProvider({ children }: QlikConnectionProviderProps) {
   return (
     <QlikConnectionContext.Provider
       value={{
-        qlikModule: qlikModule ?? ({} as QlikModule),
+        qlikModule: qlikModule ?? null,
         config: QlikConnection.config.saas,
         appIds: QlikConnection.config.appIds,
       }}

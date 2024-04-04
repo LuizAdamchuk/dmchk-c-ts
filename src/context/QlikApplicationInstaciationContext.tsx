@@ -25,13 +25,13 @@ interface AppIds {
   [key: string]: string;
 }
 
-interface QlikApplication {
+export interface QlikApplication {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getAppLayout: any;
 }
 
 type useQlikApplicationIntanciation = {
-  qlikApplicationIntance: QlikApplication;
+  qlikApplicationIntance: QlikApplication | null;
   config: SaasConfig;
   appIds: AppIds;
 };
@@ -71,8 +71,7 @@ function QlikApplicationIntanciationProvider({
   return (
     <QlikApplicationIntanciationContext.Provider
       value={{
-        qlikApplicationIntance:
-          qlikApplicationIntance ?? ({} as QlikApplication),
+        qlikApplicationIntance: qlikApplicationIntance ?? null,
         config: qlikConfig,
         appIds: appIds,
       }}

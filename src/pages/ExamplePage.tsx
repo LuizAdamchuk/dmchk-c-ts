@@ -3,7 +3,11 @@ import { WidthProvider, Responsive } from "react-grid-layout";
 
 import { useQlikApplicationIntanciation } from "../context";
 
-import { MemoizedNativeObject } from "../components";
+import {
+  MemoizedNativeObject,
+  MemoizedCustomEchart,
+  echartOptionsConfigDTO,
+} from "../components";
 
 const ExamplePage = () => {
   const { qlikApplicationIntance, appIds } = useQlikApplicationIntanciation();
@@ -47,6 +51,10 @@ const ExamplePage = () => {
   useEffect(() => {
     const fetchAppInfo = async () => {
       if (qlikApplicationIntance) {
+        console.log(
+          "🚀 ~ fetchAppInfo ~ qlikApplicationIntance:",
+          qlikApplicationIntance
+        );
         await qlikApplicationIntance.getAppLayout();
 
         setLoading(false);
@@ -72,6 +80,12 @@ const ExamplePage = () => {
         >
           <div key="1">
             <MemoizedNativeObject qlikChartId={appIds.chartId2} />
+          </div>
+          <div key="2">
+            <MemoizedCustomEchart
+              qlikChartId={appIds.chartId2}
+              echartOptionConfig={echartOptionsConfigDTO}
+            />
           </div>
         </ResponsiveGridLayout>
       )}

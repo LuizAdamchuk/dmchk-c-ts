@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
+import { QlikApplication } from "src/context/QlikApplicationInstaciationContext";
 // --------- Types -------- //
 
-interface QlikModule {
+interface QlikModule extends QlikApplication {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   openApp?: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -9,7 +10,7 @@ interface QlikModule {
 }
 
 interface QlikNativeObjectHookProps {
-  qlikApplicationIntance: QlikModule;
+  qlikApplicationIntance: QlikModule | null;
   qlikChartId: string;
   referenceForDisplayChart: React.RefObject<HTMLDivElement>;
 }
