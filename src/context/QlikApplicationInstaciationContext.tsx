@@ -1,42 +1,14 @@
 /* eslint-disable react-refresh/only-export-components */
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  ReactNode,
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useQlikConnection } from "./QlikConnectionContext";
 
-// --------- Types -------- //
-
-type QlikApplicationInstaciationProps = {
-  children: ReactNode;
-};
-
-interface SaasConfig {
-  host: string;
-  prefix: string;
-  port: number;
-  isSecure: boolean;
-  webIntegrationId: string;
-}
-interface AppIds {
-  [key: string]: string;
-}
-
-export interface QlikApplication {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  getAppLayout: any;
-}
-
-type useQlikApplicationIntanciation = {
-  qlikApplicationIntance: QlikApplication | null;
-  config: SaasConfig;
-  appIds: AppIds;
-};
-
-// --------- Types -------- //
+import {
+  AppIds,
+  QlikApplication,
+  QlikApplicationInstaciationProps,
+  SaasConfig,
+  useQlikApplicationIntanciation,
+} from "./types";
 
 const QlikApplicationIntanciationContext =
   createContext<useQlikApplicationIntanciation>({

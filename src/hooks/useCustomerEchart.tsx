@@ -1,18 +1,6 @@
 import { useEffect, useState } from "react";
 
-// ---------- Types --------- //
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type EchartOptionsConfigDTO = any;
-
-interface IHyperCubeMatrixParsed {
-  qText: string;
-  qNum: string | number;
-}
-
-type MatrixParsedOutput = IHyperCubeMatrixParsed[] | null;
-
-// ---------- Types --------- //
+import { MatrixParsedOutput, EchartOptionsConfigDTO } from "./types";
 
 const useCustomEchart = (
   matrix: MatrixParsedOutput,

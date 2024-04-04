@@ -51,10 +51,6 @@ const ExamplePage = () => {
   useEffect(() => {
     const fetchAppInfo = async () => {
       if (qlikApplicationIntance) {
-        console.log(
-          "🚀 ~ fetchAppInfo ~ qlikApplicationIntance:",
-          qlikApplicationIntance
-        );
         await qlikApplicationIntance.getAppLayout();
 
         setLoading(false);

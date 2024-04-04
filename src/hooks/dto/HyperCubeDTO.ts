@@ -1,22 +1,8 @@
-// ---------- Types ---------- //
+import { IHyperCubeInputProps, IHyperCubeMatrixOutputProps } from "../types";
 
-interface IHyperCubeMatrixOutputProps {
-  qText: string;
-  qNum: string | number;
-  qElemNumber: number;
-  qState: string;
-}
-
-type HyperCubeMatrixOutput = IHyperCubeMatrixOutputProps[][];
-
-interface IHyperCubeInputProps {
-  dimension: string;
-  measure: string;
-}
-
-// ---------- Types ---------- //
-
-const hyperCubeOutputDTO = (hyperCubeOutput: HyperCubeMatrixOutput) => {
+const hyperCubeOutputDTO = (
+  hyperCubeOutput: IHyperCubeMatrixOutputProps[][]
+) => {
   return hyperCubeOutput.map((subarray) => {
     return {
       qText: subarray[0].qText,

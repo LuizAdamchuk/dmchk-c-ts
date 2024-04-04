@@ -1,62 +1,12 @@
 // src/hooks/useQlikVisualization.js
 import { useEffect, useState } from "react";
 import { hyperCubeInputDTO, hyperCubeOutputDTO } from "./dto";
-
-// ---------- Types --------- //
-
-interface QlikApplication {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  getAppLayout?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  visualization?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  createCube?: any;
-}
-
-interface QFallbackTitle {
-  qFallbackTitle: string;
-}
-
-interface IHyperCubeMatrixOutputProps {
-  qText: string;
-  qNum: string | number;
-  qElemNumber: number;
-  qState: string;
-}
-
-type HyperCubeMatrixOutput = IHyperCubeMatrixOutputProps[][];
-
-interface QMatrix {
-  qMatrix: HyperCubeMatrixOutput;
-}
-
-interface QDataPage {
-  qDataPages: QMatrix[];
-}
-
-interface QMatrixInfo extends QDataPage {
-  qDimensionInfo: QFallbackTitle[];
-  qMeasureInfo: QFallbackTitle[];
-}
-
-interface QHyperCube {
-  qHyperCube: QMatrixInfo;
-}
-
-interface Table {
-  table: QHyperCube;
-}
-
-interface QlikOutputProps extends Table {}
-
-interface IHyperCubeMatrixParsed {
-  qText: string;
-  qNum: string | number;
-}
-
-type MatrixParsedOutput = IHyperCubeMatrixParsed[];
-
-// ---------- Types --------- //
+import {
+  MatrixParsedOutput,
+  QHyperCube,
+  QlikApplication,
+  QlikOutputProps,
+} from "./types";
 
 const useQlikHyperCubeFetchData = (
   qlikApplicationIntance: QlikApplication,

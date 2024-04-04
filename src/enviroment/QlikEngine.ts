@@ -1,19 +1,5 @@
-interface IConnectQCS {
-  host: string;
-  prefix: string;
-  port: number;
-  isSecure: boolean;
-  webIntegrationId: string;
-}
+import { IConnectQCS, IQlik, IUser } from "./types";
 
-interface IUser {
-  name: string;
-}
-
-interface IQlik {
-  openApp: (id: string) => Promise<unknown>;
-}
-// ----------- Types ------------ //
 const QlikEngine = {
   connectQCS: (config: IConnectQCS) =>
     new Promise((resolve) => {

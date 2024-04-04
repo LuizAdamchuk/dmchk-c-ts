@@ -1,44 +1,19 @@
 /* eslint-disable react-refresh/only-export-components */
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  ReactNode,
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { QlikEngine, QlikConnection } from "../enviroment";
+import {
+  QlikModule,
+  SaasConfig,
+  AppIds,
+  QlikConnectionProviderProps,
+  useQlikConnectionProps,
+} from "./types";
 
 // --------- Types -------- //
 
-interface SaasConfig {
-  host: string;
-  prefix: string;
-  port: number;
-  isSecure: boolean;
-  webIntegrationId: string;
-}
-interface AppIds {
-  [key: string]: string;
-}
-
-interface QlikModule {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  openApp: any;
-}
-
-type QlikConnectionProviderProps = {
-  children: ReactNode;
-};
-
-type useQlikConnection = {
-  qlikModule: QlikModule | null;
-  config: SaasConfig;
-  appIds: AppIds;
-};
-
 // --------- Types -------- //
 
-const QlikConnectionContext = createContext<useQlikConnection>({
+const QlikConnectionContext = createContext<useQlikConnectionProps>({
   qlikModule: {} as QlikModule,
   config: {} as SaasConfig,
   appIds: {} as AppIds,
