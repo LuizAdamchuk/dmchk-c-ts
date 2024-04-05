@@ -2,7 +2,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useQlikConnection } from "./QlikConnectionContext";
 
-import {
+import type {
   AppConfig,
   QlikApplication,
   SaasConfig,
