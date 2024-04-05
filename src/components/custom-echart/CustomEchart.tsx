@@ -3,14 +3,7 @@ import { memo } from "react";
 import ReactECharts from "echarts-for-react";
 import { useQlikApplicationIntanciation } from "../../context";
 import { useQlikHyperCubeFetchData, useCustomEchart } from "../../hooks";
-
-// ---------- Types -------- //
-interface ICustomerEchart {
-  qlikChartId: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  echartOptionConfig: any;
-}
-// ---------- Types -------- //
+import { ICustomerEchart } from "./types";
 
 const CustomEchart = ({ qlikChartId, echartOptionConfig }: ICustomerEchart) => {
   const { qlikApplicationIntance } = useQlikApplicationIntanciation();

@@ -4,22 +4,18 @@ import { QlikEngine, QlikConnection } from "../enviroment";
 import {
   QlikModule,
   SaasConfig,
-  AppIds,
-  QlikConnectionProviderProps,
+  AppConfig,
   useQlikConnectionProps,
+  Props,
 } from "./types";
-
-// --------- Types -------- //
-
-// --------- Types -------- //
 
 const QlikConnectionContext = createContext<useQlikConnectionProps>({
   qlikModule: {} as QlikModule,
-  config: {} as SaasConfig,
-  appIds: {} as AppIds,
+  saasConfig: {} as SaasConfig,
+  appConfig: {} as AppConfig,
 });
 
-function QlikConnectionProvider({ children }: QlikConnectionProviderProps) {
+function QlikConnectionProvider({ children }: Props) {
   const [qlikModule, setQlikModule] = useState<QlikModule | null>(null);
 
   useEffect(() => {
@@ -32,8 +28,8 @@ function QlikConnectionProvider({ children }: QlikConnectionProviderProps) {
     <QlikConnectionContext.Provider
       value={{
         qlikModule: qlikModule ?? null,
-        config: QlikConnection.config.saas,
-        appIds: QlikConnection.config.appIds,
+        saasConfig: QlikConnection.config.saas,
+        appConfig: QlikConnection.config.app,
       }}
     >
       {children}

@@ -10,7 +10,8 @@ import {
 } from "../components";
 
 const ExamplePage = () => {
-  const { qlikApplicationIntance, appIds } = useQlikApplicationIntanciation();
+  const { qlikApplicationIntance, appConfig } =
+    useQlikApplicationIntanciation();
   const [loading, setLoading] = useState(true);
 
   const layouts = {
@@ -75,11 +76,11 @@ const ExamplePage = () => {
           rowHeight={30}
         >
           <div key="1">
-            <MemoizedNativeObject qlikChartId={appIds.chartId2} />
+            <MemoizedNativeObject qlikChartId={appConfig.chartId1} />
           </div>
           <div key="2">
             <MemoizedCustomEchart
-              qlikChartId={appIds.chartId2}
+              qlikChartId={appConfig.chartId1}
               echartOptionConfig={echartOptionsConfigDTO}
             />
           </div>

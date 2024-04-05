@@ -3,49 +3,46 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useQlikConnection } from "./QlikConnectionContext";
 
 import {
-  AppIds,
+  AppConfig,
   QlikApplication,
-  QlikApplicationInstaciationProps,
   SaasConfig,
   useQlikApplicationIntanciation,
+  Props,
 } from "./types";
 
 const QlikApplicationIntanciationContext =
   createContext<useQlikApplicationIntanciation>({
     qlikApplicationIntance: {} as QlikApplication,
-    config: {} as SaasConfig,
-    appIds: {} as AppIds,
+    saasConfig: {} as SaasConfig,
+    appConfig: {} as AppConfig,
   });
 
-function QlikApplicationIntanciationProvider({
-  children,
-}: QlikApplicationInstaciationProps) {
-  const { qlikModule, config: qlikConfig, appIds } = useQlikConnection();
+function QlikApplicationIntanciationProvider({ children }: Props) {
+  const { qlikModule, saasConfig: qlikConfig, appConfig } = useQlikConnection();
 
   const [qlikApplicationIntance, setQlikApplicationIntance] =
     useState<QlikApplication | null>(null);
 
   useEffect(() => {
     const fetchAppInfo = async () => {
-      if (qlikModule && qlikConfig && appIds) {
-        const dataQlikApp = await qlikModule.openApp(
-          appIds.aplicacaoExemplo2,
-          qlikConfig
-        );
+      if (qlikModule && qlikConfig && appConfig) {
+        const applicationId = appConfig.appId;
+
+        const dataQlikApp = await qlikModule.openApp(applicationId, qlikConfig);
 
         setQlikApplicationIntance(dataQlikApp);
       }
     };
 
     fetchAppInfo();
-  }, [qlikModule, qlikConfig, appIds]);
+  }, [qlikModule, qlikConfig, appConfig]);
 
   return (
     <QlikApplicationIntanciationContext.Provider
       value={{
         qlikApplicationIntance: qlikApplicationIntance ?? null,
-        config: qlikConfig,
-        appIds: appIds,
+        saasConfig: qlikConfig,
+        appConfig: appConfig,
       }}
     >
       {children}
