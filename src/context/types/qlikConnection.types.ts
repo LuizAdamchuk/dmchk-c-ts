@@ -20,7 +20,7 @@ export type Props = {
   children: ReactNode;
 };
 
-export type useQlikConnectionProps = {
+export type useConnectionProps = {
   qlikModule: QlikModule | null;
   saasConfig: SaasConfig;
   appConfig: AppConfig;

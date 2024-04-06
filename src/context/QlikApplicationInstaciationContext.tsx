@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState } from "react";
-import { useQlikConnection } from "./QlikConnectionContext";
+import { useConnection } from "./ConnectionContext";
 
 import type {
   AppConfig,
@@ -18,7 +18,7 @@ const QlikApplicationIntanciationContext =
   });
 
 function QlikApplicationIntanciationProvider({ children }: Props) {
-  const { qlikModule, saasConfig: qlikConfig, appConfig } = useQlikConnection();
+  const { qlikModule, saasConfig: qlikConfig, appConfig } = useConnection();
 
   const [qlikApplicationIntance, setQlikApplicationIntance] =
     useState<QlikApplication | null>(null);

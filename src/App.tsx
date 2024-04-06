@@ -1,17 +1,17 @@
 import "./App.css";
 import { ExamplePage } from "./pages";
 import {
-  QlikConnectionProvider,
+  ConnectionProvider,
   QlikApplicationIntanciationProvider,
 } from "./context";
 
 function App() {
   return (
-    <QlikConnectionProvider>
+    <ConnectionProvider>
       <QlikApplicationIntanciationProvider>
         <ExamplePage />
       </QlikApplicationIntanciationProvider>
-    </QlikConnectionProvider>
+    </ConnectionProvider>
   );
 }
 

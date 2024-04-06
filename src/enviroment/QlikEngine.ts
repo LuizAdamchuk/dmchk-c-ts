@@ -65,6 +65,7 @@ const QlikEngine = {
       throw new Error(errorMessage);
     }
   },
+
   request: (
     config: IConnectQCS,
     tenantUri: string,

@@ -1,2 +1,2 @@
-export * from "./QlikConnectionContext";
+export * from "./ConnectionContext";
 export * from "./QlikApplicationInstaciationContext";

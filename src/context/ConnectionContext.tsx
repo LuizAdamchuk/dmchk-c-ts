@@ -1,31 +1,33 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState } from "react";
-import { QlikEngine, QlikConnection } from "../enviroment";
+import { AdapterConnection, QlikConnection } from "../enviroment";
+
 import {
   QlikModule,
   SaasConfig,
   AppConfig,
-  useQlikConnectionProps,
+  useConnectionProps,
   Props,
 } from "./types";
 
-const QlikConnectionContext = createContext<useQlikConnectionProps>({
+const ConnectionContext = createContext<useConnectionProps>({
   qlikModule: {} as QlikModule,
   saasConfig: {} as SaasConfig,
   appConfig: {} as AppConfig,
 });
+const adapter = new AdapterConnection();
 
-function QlikConnectionProvider({ children }: Props) {
+function ConnectionProvider({ children }: Props) {
   const [qlikModule, setQlikModule] = useState<QlikModule | null>(null);
 
   useEffect(() => {
-    QlikEngine.connectQCS(QlikConnection.config.saas).then((qlikModule) => {
-      setQlikModule(qlikModule as QlikModule);
+    adapter.connect(QlikConnection.config.saas).then((qlikModule) => {
+      setQlikModule(qlikModule as unknown as QlikModule);
     });
   }, []);
 
   return (
-    <QlikConnectionContext.Provider
+    <ConnectionContext.Provider
       value={{
         qlikModule: qlikModule ?? null,
         saasConfig: QlikConnection.config.saas,
@@ -33,20 +35,18 @@ function QlikConnectionProvider({ children }: Props) {
       }}
     >
       {children}
-    </QlikConnectionContext.Provider>
+    </ConnectionContext.Provider>
   );
 }
 
-function useQlikConnection() {
-  const context = useContext(QlikConnectionContext);
+function useConnection() {
+  const context = useContext(ConnectionContext);
 
   if (!context) {
-    throw new Error(
-      "useQlikConnection should be used within a QlikConnectionProvider"
-    );
+    throw new Error("useConnection should be used within a ConnectionProvider");
   }
 
   return context;
 }
 
-export { QlikConnectionProvider, useQlikConnection };
+export { ConnectionProvider, useConnection };
