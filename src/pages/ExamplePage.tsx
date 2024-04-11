@@ -76,11 +76,11 @@ const ExamplePage = () => {
           rowHeight={30}
         >
           <div key="1">
-            <MemoizedNativeObject qlikChartId={appConfig.chartId1} />
+            <MemoizedNativeObject qlikChartId={appConfig.chartId} />
           </div>
           <div key="2">
             <MemoizedCustomEchart
-              qlikChartId={appConfig.chartId1}
+              qlikChartId={appConfig.chartId}
               echartOptionConfig={echartOptionsConfigDTO}
             />
           </div>
