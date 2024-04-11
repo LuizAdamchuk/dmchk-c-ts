@@ -10,8 +10,6 @@ export const QlikConnection = {
     app: {
       appId: import.meta.env.VITE_APP_APP_ID,
       chartId: import.meta.env.VITE_APP_CHART_ID,
-      chartId1: import.meta.env.VITE_APP_CHART_ID1,
-      chartId2: import.meta.env.VITE_APP_CHART_ID2,
     },
   },
 };

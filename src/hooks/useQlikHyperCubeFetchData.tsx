@@ -1,12 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // src/hooks/useQlikVisualization.js
 import { useEffect, useState } from "react";
-import { hyperCubeInputDTO, hyperCubeOutputDTO } from "./dto";
-import {
-  MatrixParsedOutput,
-  QHyperCube,
-  QlikApplication,
-  QlikOutputProps,
-} from "./types";
+import { hyperCubeOutputDTO } from "./dto";
+import { MatrixParsedOutput, QHyperCube, QlikApplication } from "./types";
 
 const useQlikHyperCubeFetchData = (
   qlikApplicationIntance: QlikApplication,
@@ -14,20 +10,27 @@ const useQlikHyperCubeFetchData = (
 ): MatrixParsedOutput | null => {
   const [matrix, setMatrix] = useState<MatrixParsedOutput | null>(null);
   null;
-  const [dimension, setDimension] = useState<string | null>(null);
-  const [measure, setMeasure] = useState<string | null>(null);
 
+  const [qHyperCubeDef, setqHyperCubeDef] = useState<string | null>(null);
+  const [hyperCubeProps, setHyperCubeProps] = useState<string | null>(null);
   // Pegando as informacoes necessarias do qHyperCube
   useEffect(() => {
     if (qlikApplicationIntance && qlikChartId) {
       qlikApplicationIntance.visualization
         .get(qlikChartId)
-        .then((vis: QlikOutputProps) => {
-          setDimension(vis.table.qHyperCube.qDimensionInfo[0].qFallbackTitle);
-          setMeasure(vis.table.qHyperCube.qMeasureInfo[0].qFallbackTitle);
+        .then((object: any) => {
+          object.model
+            .getProperties()
+            .then((props: any) => {
+              setHyperCubeProps(props);
+              setqHyperCubeDef(props.qHyperCubeDef);
+            })
+            .catch((error: any) => {
+              return error;
+            });
         })
-        .catch((error: unknown) => {
-          console.error(error, `object id: ${qlikChartId}`);
+        .catch((error: any) => {
+          return error;
         });
     }
   }, [qlikApplicationIntance, qlikChartId]);
@@ -35,26 +38,18 @@ const useQlikHyperCubeFetchData = (
   // Criando um cubo para acessas as informacoes
   useEffect(() => {
     const createCube = async () => {
-      if (dimension && measure) {
-        const hyperCubeInputParser = hyperCubeInputDTO({ dimension, measure });
-
+      if (hyperCubeProps) {
         await qlikApplicationIntance.createCube(
-          hyperCubeInputParser,
+          qHyperCubeDef,
           function (reply: QHyperCube) {
-            // Retrieving hyperCube data
-            const parsedhyperCubeOutputDTO = hyperCubeOutputDTO(
-              reply.qHyperCube.qDataPages[0].qMatrix
-            );
-            setMatrix(parsedhyperCubeOutputDTO);
+            setMatrix(hyperCubeOutputDTO(reply.qHyperCube, hyperCubeProps));
           }
         );
-        setDimension(null);
-        setMeasure(null);
       }
     };
 
     createCube();
-  }, [dimension, measure, qlikApplicationIntance]);
+  }, [hyperCubeProps, qlikApplicationIntance, qHyperCubeDef]);
 
   return matrix;
 };
