@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // ---------- Types --------- //
 
-interface IHyperCubeMatrixParsed {
-  qText: string;
-  qNum: string | number;
-}
+// interface IHyperCubeMatrixParsed {
+//   qText: string;
+//   qNum: string | number;
+// }
 
-type MatrixParsedOutput = {
-  matrix: IHyperCubeMatrixParsed[];
-};
+// type MatrixParsedOutput = {
+//   matrix: IHyperCubeMatrixParsed[];
+// };
 
 // ---------- Types --------- //
 
@@ -74,17 +74,17 @@ const echartOptionsConfigDTO = (optionsConfigs: any) => {
 
 // ---- Private Methods ----- //
 
-const echartInputDTO = (echartInput: IHyperCubeMatrixParsed[]) => {
-  return echartInput.map((item) => {
-    let value = item.qNum;
-    if (typeof value === "string") {
-      value = parseFloat(value);
-    }
-    return {
-      name: item.qText,
-      value: value.toFixed(1),
-    };
-  });
-};
+// const echartInputDTO = (echartInput: IHyperCubeMatrixParsed[]) => {
+//   return echartInput.map((item) => {
+//     let value = item.qNum;
+//     if (typeof value === "string") {
+//       value = parseFloat(value);
+//     }
+//     return {
+//       name: item.qText,
+//       value: value.toFixed(1),
+//     };
+//   });
+// };
 
 export { echartOptionsConfigDTO };

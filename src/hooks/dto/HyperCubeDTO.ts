@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-const parseHyperCubeRefLines = (structuredData, data) => {
+const parseHyperCubeRefLines = (structuredData: any, data: any) => {
   if (data.refLines && data.refLines.length > 0) {
     const targets = data.refLines
       .filter((line: any) => line.show)
@@ -17,7 +17,7 @@ const parseHyperCubeRefLines = (structuredData, data) => {
   }
 };
 
-const parseHyperCubeMeasure = (structuredData, data) => {
+const parseHyperCubeMeasure = (structuredData: any, data: any) => {
   const qStateL = data.qDataPages[0].qMatrix.filter((item: any) =>
     item.some((cell: any) => cell.qState === "L")
   );
@@ -47,7 +47,7 @@ const parseHyperCubeMeasure = (structuredData, data) => {
   }
 };
 
-const parseHyperCubeDimension = (structuredData, data) => {
+const parseHyperCubeDimension = (structuredData: any, data: any) => {
   const qStateO = data.qDataPages[0].qMatrix.filter((item: any) =>
     item.some((cell: any) => cell.qState === "O" || cell.qState === "S")
   );

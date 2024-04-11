@@ -13,6 +13,7 @@ const useQlikHyperCubeFetchData = (
 
   const [qHyperCubeDef, setqHyperCubeDef] = useState<string | null>(null);
   const [hyperCubeProps, setHyperCubeProps] = useState<string | null>(null);
+
   // Pegando as informacoes necessarias do qHyperCube
   useEffect(() => {
     if (qlikApplicationIntance && qlikChartId) {
