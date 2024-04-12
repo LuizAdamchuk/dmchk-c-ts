@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { WidthProvider, Responsive } from "react-grid-layout";
 
-import { useQlikApplicationIntanciation } from "../context";
+import { useQlikApplicationIntanciation } from "../module/qlilk";
 
 import {
   MemoizedNativeObject,

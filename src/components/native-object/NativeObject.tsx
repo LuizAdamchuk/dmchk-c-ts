@@ -1,6 +1,6 @@
 import { memo, useRef } from "react";
-import { useQlikApplicationIntanciation } from "../../context";
-import { useQlikNativeObject } from "../../hooks";
+import { useQlikApplicationIntanciation } from "../../module/qlilk";
+import { useQlikNativeObject } from "../../module/qlilk";
 import { NativeObjectProps } from "./types";
 
 const NativeObject = ({ qlikChartId }: NativeObjectProps) => {

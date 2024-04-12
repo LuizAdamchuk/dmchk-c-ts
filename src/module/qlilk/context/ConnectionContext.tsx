@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState } from "react";
-import { AdapterConnection, QlikConnection } from "../enviroment";
-
+import { AdapterConnection } from "../../../enviroment";
+import { QlikConnection } from "../enviroment";
 import {
   QlikModule,
   SaasConfig,

@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { memo } from "react";
 import ReactECharts from "echarts-for-react";
-import { useQlikApplicationIntanciation } from "../../context";
-import { useQlikHyperCubeFetchData, useCustomEchart } from "../../hooks";
+import { useQlikApplicationIntanciation } from "../../module/qlilk";
+import { useQlikHyperCubeFetchData, useCustomEchart } from "../../module/qlilk";
 import { ICustomerEchart } from "./types";
 
 const CustomEchart = ({ qlikChartId, echartOptionConfig }: ICustomerEchart) => {

@@ -1,6 +1,5 @@
 import { AbstractConnectionAdapter } from "src/AbstractMethods";
-import { QlikEngine } from "./QlikEngine";
-import { IConnectQCS } from "./types";
+import { QlikEngine, IConnectQCS } from "../module/qlilk";
 
 class AdapterConnection implements AbstractConnectionAdapter {
   private qlikEngine: typeof QlikEngine;

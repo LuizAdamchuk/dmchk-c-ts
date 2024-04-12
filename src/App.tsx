@@ -3,7 +3,7 @@ import { ExamplePage } from "./pages";
 import {
   ConnectionProvider,
   QlikApplicationIntanciationProvider,
-} from "./context";
+} from "./module/qlilk";
 
 function App() {
   return (
