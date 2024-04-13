@@ -1,11 +1,13 @@
 import { useEffect, useRef } from "react";
 import { QlikNativeObjectHookProps, QlikVisualization } from "./types";
+import { useQlikApplicationIntanciation } from "../context";
 
 const useQlikNativeObject = ({
-  qlikApplicationIntance,
   qlikChartId,
   referenceForDisplayChart,
 }: QlikNativeObjectHookProps) => {
+  const { qlikApplicationIntance } = useQlikApplicationIntanciation();
+
   const visRef = useRef<QlikVisualization | null>(null);
 
   useEffect(() => {

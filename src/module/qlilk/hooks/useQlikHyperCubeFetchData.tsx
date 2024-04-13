@@ -2,12 +2,14 @@
 // src/hooks/useQlikVisualization.js
 import { useEffect, useState } from "react";
 import { hyperCubeOutputDTO } from "./dto";
-import { MatrixParsedOutput, QHyperCube, QlikApplication } from "./types";
+import { MatrixParsedOutput, QHyperCube } from "./types";
+import { useQlikApplicationIntanciation } from "../context";
 
 const useQlikHyperCubeFetchData = (
-  qlikApplicationIntance: QlikApplication,
   qlikChartId: string
 ): MatrixParsedOutput | null => {
+  const { qlikApplicationIntance } = useQlikApplicationIntanciation();
+
   const [matrix, setMatrix] = useState<MatrixParsedOutput | null>(null);
   null;
 
@@ -39,7 +41,7 @@ const useQlikHyperCubeFetchData = (
   // Criando um cubo para acessas as informacoes
   useEffect(() => {
     const createCube = async () => {
-      if (hyperCubeProps) {
+      if (hyperCubeProps && qlikApplicationIntance) {
         await qlikApplicationIntance.createCube(
           qHyperCubeDef,
           function (reply: QHyperCube) {

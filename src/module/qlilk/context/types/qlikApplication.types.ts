@@ -3,6 +3,8 @@ import { AppConfig, SaasConfig } from "./qlikConnection.types";
 
 export interface QlikApplication {
   getAppLayout: any;
+  visualization?: any;
+  createCube?: any;
 }
 
 export type useQlikApplicationIntanciation = {

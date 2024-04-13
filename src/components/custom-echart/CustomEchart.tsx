@@ -1,27 +1,20 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { memo } from "react";
 import ReactECharts from "echarts-for-react";
-import { useQlikApplicationIntanciation } from "../../module/qlilk";
-import { useQlikHyperCubeFetchData, useCustomEchart } from "../../module/qlilk";
+import { useQlikHyperCubeFetchData } from "../../module/qlilk";
 import { ICustomerEchart } from "./types";
+import { useCustomEchart } from "../../hooks";
 
 const CustomEchart = ({ qlikChartId, echartOptionConfig }: ICustomerEchart) => {
-  const { qlikApplicationIntance } = useQlikApplicationIntanciation();
+  const hyperCubeData = useQlikHyperCubeFetchData(qlikChartId);
 
-  if (qlikApplicationIntance) {
-    const hyperCubeData = useQlikHyperCubeFetchData(
-      qlikApplicationIntance,
-      qlikChartId
-    );
+  const echartOptions = useCustomEchart(hyperCubeData, echartOptionConfig);
 
-    const echartOptions = useCustomEchart(hyperCubeData, echartOptionConfig);
-
-    if (!echartOptions) {
-      return null;
-    }
-
-    return <ReactECharts option={echartOptions} />;
+  if (!echartOptions) {
+    return null;
   }
+
+  return <ReactECharts option={echartOptions} />;
 };
 
 const MemoizedCustomEchart = memo(CustomEchart, (prevProps, nextProps) => {

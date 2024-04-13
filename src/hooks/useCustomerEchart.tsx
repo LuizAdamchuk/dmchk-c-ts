@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { MatrixParsedOutput, EchartOptionsConfigDTO } from "./types";
+import { EchartOptionsConfigDTO } from "./types";
+import { MatrixParsedOutput } from "src/module/qlilk/hooks/types";
 
 const useCustomEchart = (
   matrix: MatrixParsedOutput,

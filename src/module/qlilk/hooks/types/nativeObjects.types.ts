@@ -8,7 +8,6 @@ export interface QlikModule extends QlikApplication {
 }
 
 export interface QlikNativeObjectHookProps {
-  qlikApplicationIntance: QlikModule | null;
   qlikChartId: string;
   referenceForDisplayChart: React.RefObject<HTMLDivElement>;
 }
